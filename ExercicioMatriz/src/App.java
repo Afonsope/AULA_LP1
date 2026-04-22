@@ -9,53 +9,55 @@ public class App {
             try {
                 System.out.println("Digite a quantidade de alunos: ");
                 qtdAlunos = scanner.nextInt();
+                if (qtdAlunos <= 0) throw new Exception("Informe um número maior que zero.");
             } catch (Exception e) {
                 System.out.println("Erro: " + e.getMessage());
                 scanner.nextLine();
+                qtdAlunos = 0; // garante que o loop continua
             }
-        } while (qtdAlunos<0);
+        } while (qtdAlunos <= 0);
 
-        float notasAlunos[][] = new float[qtdAlunos][3];
+        float[][] notasAlunos = new float[qtdAlunos][3];
 
-        for(int i = 0; i < qtdAlunos; i++){
-            for(int j = 0; j < 3; j++){
-                do{
+        for (int i = 0; i < qtdAlunos; i++) {
+            for (int j = 0; j < 3; j++) {
+                do {
                     try {
-                        System.out.println("Digite a nota " + j + " do aluno " + i + ": ");
+                        System.out.println("Digite a nota " + (j + 1) + " do aluno " + (i + 1) + ": ");
                         notasAlunos[i][j] = scanner.nextFloat();
-                        if(notasAlunos[i][j] < 0 || notasAlunos[i][j] > 10)
-                            throw new Exception("Informe uma nota ente 0 a 10.");
+                        if (notasAlunos[i][j] < 0 || notasAlunos[i][j] > 10)
+                            throw new Exception("Informe uma nota entre 0 e 10.");
                     } catch (Exception e) {
                         System.out.println("Erro: " + e.getMessage());
                         scanner.nextLine();
+                        notasAlunos[i][j] = -1; // força repetição do loop
                     }
-                } while(notasAlunos[i][j] < 0 || notasAlunos[i][j] > 10);
+                } while (notasAlunos[i][j] < 0 || notasAlunos[i][j] > 10);
             }
         }
 
-        float[][] maioresNotas = new float[3][3];
-        float[][] menoresNotas = new float[3][3];
+        // Para cada nota (coluna), guarda o índice do aluno com maior e menor valor
+        int[] idxMaior = new int[3];
+        int[] idxMenor = new int[3];
 
-        for(int i = 0; i < qtdAlunos; i++){
-            for(int j = 0; j < 3; j++){
-                if(i == 0){
-                    maioresNotas[i][j] = notasAlunos[i][j];
-                    menoresNotas[i][j] = notasAlunos[i][j];
-                } else{
-                    if(notasAlunos[i][j] > maioresNotas[i][j]){
-                        maioresNotas[i][j] = notasAlunos[i][j];
-                    } else if(notasAlunos[i][j] < menoresNotas[i][j]){
-                        menoresNotas[i][j] = notasAlunos[i][j];
-                    }
-                    
+        for (int j = 0; j < 3; j++) {
+            idxMaior[j] = 0;
+            idxMenor[j] = 0;
+            for (int i = 1; i < qtdAlunos; i++) {
+                if (notasAlunos[i][j] > notasAlunos[idxMaior[j]][j]) {
+                    idxMaior[j] = i;
+                }
+                if (notasAlunos[i][j] < notasAlunos[idxMenor[j]][j]) {
+                    idxMenor[j] = i;
                 }
             }
         }
 
-        for(int i = 0; i < qtdAlunos; i++){
-            for(int j = 0; j < 3; j++){
-                System.out.println("Nota " + (i+1) + " --> maior nota " + maioresNotas[j] + ", do aluno " + maioresNotas[i] + " | menor nota " + menoresNotas[j] + ", do aluno " + menoresNotas[i]);
-            }
+        System.out.println("\n--- Resultado ---");
+        for (int j = 0; j < 3; j++) {
+            System.out.println("Nota " + (j + 1) + ":");
+            System.out.println("  Maior: Aluno " + (idxMaior[j] + 1) + " com " + notasAlunos[idxMaior[j]][j]);
+            System.out.println("  Menor: Aluno " + (idxMenor[j] + 1) + " com " + notasAlunos[idxMenor[j]][j]);
         }
 
         scanner.close();
