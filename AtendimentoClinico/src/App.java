@@ -8,6 +8,8 @@ import entities.StatusEntity;
 
 public class App {
     public static void main(String[] args) throws Exception {
+        StatusEntity status = new StatusEntity(1, "ativo");
+        
         //Criando o paciente
         PessoaEntity paciente1 = new PessoaEntity("1111", "Roberto", "123", status);
         PessoaEntity paciente2 = new PessoaEntity("2222", "Larissa", "321", status);
