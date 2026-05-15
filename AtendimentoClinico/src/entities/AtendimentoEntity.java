@@ -132,27 +132,27 @@ public class AtendimentoEntity {
         this.atendente = atendente;
     }
 
-    private void adicionarMedic(MedicoAtendimento medico) {
+    public void adicionarMedico(MedicoAtendimento medico) {
         atendimentosMedicos.add(medico);
     }
 
-    private void removerMedico(MedicoAtendimento medico) {
+    public void removerMedico(MedicoAtendimento medico) {
         atendimentosMedicos.remove(medico);
     }
 
-    private void adicionarProcedimento(ProcedimentoAtendimento procedimento) {
+    public void adicionarProcedimento(ProcedimentoAtendimento procedimento) {
         procedimentos.add(procedimento);
     }
 
-    private void removerProcedimento(ProcedimentoAtendimento procedimento) {
+    public void removerProcedimento(ProcedimentoAtendimento procedimento) {
         procedimentos.remove(procedimento);
     }
 
-    private void adicionarExame(ExameAtendimento exame) {
+    public void adicionarExame(ExameAtendimento exame) {
         exames.add(exame);
     }
 
-    private void removerExame(ExameAtendimento exame) {
+    public void removerExame(ExameAtendimento exame) {
         exames.remove(exame);
     }
 }

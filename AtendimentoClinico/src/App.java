@@ -1,8 +1,15 @@
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import entities.AdminEntity;
+import entities.AtendimentoEntity;
+import entities.ExameAtendimento;
+import entities.ExameEntity;
 import entities.FuncionarioEntity;
+import entities.MedicoAtendimento;
 import entities.MedicoEntity;
+import entities.PessoaEntity;
+import entities.ProcedimentoAtendimento;
 import entities.ProcedimentosEntity;
 import entities.StatusEntity;
 
@@ -16,7 +23,7 @@ public class App {
         PessoaEntity paciente3 = new PessoaEntity("3333", "Carlos", "213", status);
 
         //Criando o administrador
-        AdminEntity admin = new AdminEntity("4444", "Luiz", "123", status, LocalDate.now().plusDays(2));
+        AdminEntity admin = new AdminEntity("4444", "Luiz", "123", status, LocalDateTime.now().plusDays(2));
 
         //Criando os funcionários
         FuncionarioEntity funcionario1 = new FuncionarioEntity("5555", "José", "345", status, "Bloco - A");
@@ -27,8 +34,8 @@ public class App {
         MedicoEntity medico2 = new MedicoEntity("8888", "Dra. Marilene", "453", status, "1.3.2-12");
 
         //criando os procedimentos
-        ProcedimentoEntity procedimento1 = new ProcedimentoEntity(1, "Raio X", "Exame de imagem básico");
-        ProcedimentoEntity procedimento2 = new ProcedimentoEntity(2, "Hemograma", "Exame de sangue completo");
+        ProcedimentosEntity procedimento1 = new ProcedimentosEntity(1, "Raio X", "Exame de imagem básico");
+        ProcedimentosEntity procedimento2 = new ProcedimentosEntity(2, "Hemograma", "Exame de sangue completo");
 
         //Criando os exames
         ExameEntity exame1 = new ExameEntity(1, "Raio X do dedo", "Imagem");
@@ -41,8 +48,8 @@ public class App {
 
         AtendimentoEntity atendimento = new AtendimentoEntity(
             1,
-            LocalDate.now().plusDays(2),
-            LocalDate.now().plusDays(4),
+            LocalDateTime.now().plusDays(2),
+            LocalDateTime.now().plusDays(4),
             "Austa Clinica",
             "Osso do dedo quebrado",
             "Ficar com dedo enfachado por 2 semanas",
@@ -53,11 +60,11 @@ public class App {
             funcionario1
         );
 
-        MedicoAtendimento medicoAtendimento = new MedicoAtendimento(atendimento, medico2, LocalDate.now().plusDays(2), "Realizamento sobre fratura de Paciente", "em andamento");
+        MedicoAtendimento medicoAtendimento = new MedicoAtendimento(atendimento, medico2, LocalDateTime.now().plusDays(2), "Realizamento sobre fratura de Paciente", "em andamento");
 
-        ProcedimentoAtendimento procedimentoAtendimento = new ProcedimentoAtendimento(atendimento, procedimento1, LocalDate.now().plusDays(2), "Realizado com sucesso");
+        ProcedimentoAtendimento procedimentoAtendimento = new ProcedimentoAtendimento(atendimento, procedimento1, LocalDateTime.now().plusDays(2), "Realizado com sucesso");
 
-        ExameAtendimento exameAtendimento = new ExameAtendimento(atendimento, exame1, LocalDate.now().plusDays(2), "Fratura confirmada no dedo indicador", "Paciente encaminhado para imobilização");
+        ExameAtendimento exameAtendimento = new ExameAtendimento(atendimento, exame1, LocalDateTime.now().plusDays(2), "Fratura confirmada no dedo indicador", "Paciente encaminhado para imobilização");
 
         atendimento.adicionarMedico(medicoAtendimento);
         atendimento.adicionarProcedimento(procedimentoAtendimento);
@@ -70,8 +77,8 @@ public class App {
 
         AtendimentoEntity atendimento2 = new AtendimentoEntity(
             2,
-            LocalDate.now().plusDays(1),
-            LocalDate.now().plusDays(3),
+            LocalDateTime.now().plusDays(1),
+            LocalDateTime.now().plusDays(3),
             "Unimed",
             "Dor abdominal intensa",
             "Repouso e dieta leve por 5 dias",
@@ -82,11 +89,11 @@ public class App {
             funcionario2
         );
 
-        MedicoAtendimento medicoAtendimento2 = new MedicoAtendimento(atendimento2, medico1, LocalDate.now().plusDays(1), "Avaliação clínica geral do paciente", "finalizado");
+        MedicoAtendimento medicoAtendimento2 = new MedicoAtendimento(atendimento2, medico1, LocalDateTime.now().plusDays(1), "Avaliação clínica geral do paciente", "finalizado");
 
-        ProcedimentoAtendimento procedimentoAtendimento2 = new ProcedimentoAtendimento(atendimento2, procedimento2, LocalDate.now().plusDays(1), "Hemograma dentro dos valores normais");
+        ProcedimentoAtendimento procedimentoAtendimento2 = new ProcedimentoAtendimento(atendimento2, procedimento2, LocalDateTime.now().plusDays(1), "Hemograma dentro dos valores normais");
 
-        ExameAtendimento exameAtendimento2 = new ExameAtendimento(atendimento2, exame2, LocalDate.now().plusDays(1), "Resultados sem alterações significativas", "Paciente liberada com orientações");
+        ExameAtendimento exameAtendimento2 = new ExameAtendimento(atendimento2, exame2, LocalDateTime.now().plusDays(1), "Resultados sem alterações significativas", "Paciente liberada com orientações");
 
         atendimento2.adicionarMedico(medicoAtendimento2);
         atendimento2.adicionarProcedimento(procedimentoAtendimento2);
@@ -99,8 +106,8 @@ public class App {
 
         AtendimentoEntity atendimento3 = new AtendimentoEntity(
             3,
-            LocalDate.now().plusDays(3),
-            LocalDate.now().plusDays(5),
+            LocalDateTime.now().plusDays(3),
+            LocalDateTime.now().plusDays(5),
             "SulAmérica",
             "Entorse no tornozelo esquerdo",
             "Uso de muletas por 10 dias",
@@ -111,13 +118,13 @@ public class App {
             funcionario1
         );
 
-        MedicoAtendimento medicoAtendimento3 = new MedicoAtendimento(atendimento3, medico1, LocalDate.now().plusDays(3), "Avaliação ortopédica do tornozelo", "em andamento");
-        MedicoAtendimento medicoAtendimento4 = new MedicoAtendimento(atendimento3, medico2, LocalDate.now().plusDays(4), "Reavaliação pós imobilização", "finalizado");
+        MedicoAtendimento medicoAtendimento3 = new MedicoAtendimento(atendimento3, medico1, LocalDateTime.now().plusDays(3), "Avaliação ortopédica do tornozelo", "em andamento");
+        MedicoAtendimento medicoAtendimento4 = new MedicoAtendimento(atendimento3, medico2, LocalDateTime.now().plusDays(4), "Reavaliação pós imobilização", "finalizado");
 
-        ProcedimentoAtendimento procedimentoAtendimento3 = new ProcedimentoAtendimento(atendimento3, procedimento1, LocalDate.now().plusDays(3), "Raio X sem fratura, apenas entorse");
-        ProcedimentoAtendimento procedimentoAtendimento4 = new ProcedimentoAtendimento(atendimento3, procedimento2, LocalDate.now().plusDays(3), "Hemograma de rotina sem alterações");
+        ProcedimentoAtendimento procedimentoAtendimento3 = new ProcedimentoAtendimento(atendimento3, procedimento1, LocalDateTime.now().plusDays(3), "Raio X sem fratura, apenas entorse");
+        ProcedimentoAtendimento procedimentoAtendimento4 = new ProcedimentoAtendimento(atendimento3, procedimento2, LocalDateTime.now().plusDays(3), "Hemograma de rotina sem alterações");
 
-        ExameAtendimento exameAtendimento3 = new ExameAtendimento(atendimento3, exame1, LocalDate.now().plusDays(3), "Sem fratura identificada", "Entorse grau 2 confirmado");
+        ExameAtendimento exameAtendimento3 = new ExameAtendimento(atendimento3, exame1, LocalDateTime.now().plusDays(3), "Sem fratura identificada", "Entorse grau 2 confirmado");
 
         atendimento3.adicionarMedico(medicoAtendimento3);
         atendimento3.adicionarMedico(medicoAtendimento4);
