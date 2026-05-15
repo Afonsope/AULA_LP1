@@ -1,6 +1,9 @@
 package entities;
 
-public class PessoaEntity {
+public abstract class PessoaEntity {
+
+    public abstract String mostrarStatus();
+
     private String cpf;
     private String nome;
     private String senha;

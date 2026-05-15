@@ -8,7 +8,7 @@ import entities.ExameEntity;
 import entities.FuncionarioEntity;
 import entities.MedicoAtendimento;
 import entities.MedicoEntity;
-import entities.PessoaEntity;
+import entities.PacienteEntity;
 import entities.ProcedimentoAtendimento;
 import entities.ProcedimentosEntity;
 import entities.StatusEntity;
@@ -18,9 +18,9 @@ public class App {
         StatusEntity status = new StatusEntity(1, "ativo");
         
         //Criando o paciente
-        PessoaEntity paciente1 = new PessoaEntity("1111", "Roberto", "123", status);
-        PessoaEntity paciente2 = new PessoaEntity("2222", "Larissa", "321", status);
-        PessoaEntity paciente3 = new PessoaEntity("3333", "Carlos", "213", status);
+        PacienteEntity paciente1 = new PacienteEntity("1111", "Roberto", "123", status, "Unimed");
+        PacienteEntity paciente2 = new PacienteEntity("2222", "Larissa", "321", status, "SulAmérica");
+        PacienteEntity paciente3 = new PacienteEntity("3333", "Carlos", "213", status, "Bradesco");
 
         //Criando o administrador
         AdminEntity admin = new AdminEntity("4444", "Luiz", "123", status, LocalDateTime.now().plusDays(2));

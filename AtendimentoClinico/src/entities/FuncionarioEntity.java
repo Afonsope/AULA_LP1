@@ -20,4 +20,9 @@ public class FuncionarioEntity extends PessoaEntity {
     public void setSertor(String sertor) {
         this.sertor = sertor;
     }
+
+    @Override
+    public String mostrarStatus() {
+        return "Funcionário: " + getNome() + " - Setor: " + sertor + " - Status: " + getStatus().getDescricao();
+    }
 }

@@ -22,4 +22,9 @@ public class AdminEntity extends PessoaEntity {
     public void setDataCadastro(LocalDateTime dataCadastro) {
         this.dataCadastro = dataCadastro;
     }
+
+    @Override
+    public String mostrarStatus() {
+        return "Administrador: " + getNome() + " - Status: " + getStatus().getDescricao();
+    }
 }

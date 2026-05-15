@@ -26,11 +26,11 @@ public class AtendimentoEntity {
         atendimentosMedicos = new ArrayList<>();
         procedimentos = new ArrayList<>();
         exames = new ArrayList<>();
-        paciente = new PessoaEntity();
+        paciente = new PacienteEntity();
         atendente = new FuncionarioEntity();
     }
 
-    public AtendimentoEntity(int id, LocalDateTime dataAbertura, LocalDateTime dataAlta, String convenio, String observacaoEntrada, String observacaoAlta, ArrayList<MedicoAtendimento> atendimentosMedicos, ArrayList<ProcedimentoAtendimento> procedimentos, ArrayList<ExameAtendimento> exames, PessoaEntity paciente, FuncionarioEntity atendente) {
+    public AtendimentoEntity(int id, LocalDateTime dataAbertura, LocalDateTime dataAlta, String convenio, String observacaoEntrada, String observacaoAlta, ArrayList<MedicoAtendimento> atendimentosMedicos, ArrayList<ProcedimentoAtendimento> procedimentos, ArrayList<ExameAtendimento> exames, PacienteEntity paciente, FuncionarioEntity atendente) {
         this.id = id;
         this.dataAbertura = dataAbertura;
         this.dataAlta = dataAlta;
@@ -116,11 +116,11 @@ public class AtendimentoEntity {
         this.exames = exames;
     }
 
-    public PessoaEntity getPaciente() {
-        return paciente;
+    public PacienteEntity getPaciente() {
+        return (PacienteEntity) paciente;
     }
 
-    public void setPaciente(PessoaEntity paciente) {
+    public void setPaciente(PacienteEntity paciente) {
         this.paciente = paciente;
     }
 

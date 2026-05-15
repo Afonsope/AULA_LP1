@@ -21,5 +21,10 @@ public class MedicoEntity extends PessoaEntity {
         this.crm = crm;
     }
 
+    @Override
+    public String mostrarStatus() {
+        return "Medico: " + getNome() + " - CRM: " + crm + " - Status: " + getStatus().getDescricao();
+    }
+
     
 }
